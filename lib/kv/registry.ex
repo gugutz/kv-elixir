@@ -22,7 +22,7 @@ defmodule KV.Registry do
   Looks up the bucket pid for 'name' stored in 'server'.
   Returns '{:ok, pid}' if the bucket exists, ':error' otherwise.
   """
-  def lookup(server,name) do
+  def lookup(server, name) do
     GenServer.call(server, {:lookup, name})
   end
 
@@ -30,7 +30,7 @@ defmodule KV.Registry do
   Ensures there is a bucket associated with the given 'name' in 'server'.
   """
   def create(server, name) do
-    GenServer.cast(server, {:create, name})
+    GenServer.call(server, {:create, name})
   end
 
 
