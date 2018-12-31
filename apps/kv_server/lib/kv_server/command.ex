@@ -19,11 +19,11 @@ defmodule KVServer.Command do
   def run({:put, bucket, key, value}) do
     lookup(bucket, fn pid ->
       value = KV.Bucket.put(pid, key, value)
-      {:ok, "#{value}\r\nOK\r\n"}
+      {:ok, "OK\r\n"}
     end)
   end
 
-  def delete({:delete, bucket, key}) do
+  def run({:delete, bucket, key}) do
     lookup(bucket, fn pid ->
       value = KV.Bucket.delete(pid, key)
       {:ok, "OK\r\n"}
